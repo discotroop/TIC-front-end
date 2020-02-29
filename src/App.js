@@ -1,30 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-const update = ["hi", "hello"]; 
-console.log(update)
+class Testing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: ["sample"],
+      newStatus: ""
+    }
+    this.handleClick = this.handleClick.bind(this);
 
-function HandleClick () {
-  let testing = document.getElementById("inputter")
-  console.log(testing)
+  }
+  updateInput(e) {
+    this.setState({newStatus: e.target.value})
+  }
 
-}
+  handleClick() {
+    console.log("clicked")
+    let molly = this.state.newStatus;
+    let sample = this.state.status;
+    sample.push(molly);
+    this.setState( {
+      status: molly, 
+    }
+    ) 
+  }
 
-function Updates (props) {
-  return (
-    <div> {props.list} </div>
-  )
+
+  render() {
+    return (
+      <div>
+      <div> {this.state.status} </div>
+      <form>
+      <input type="text" id="text" onChange={(e) => { this.updateInput(e) }}></input>
+      <button onClick={() => this.handleClick()}> add </button> 
+      </form>
+
+      </div>
+    )
+  }
 }
 
 function App() {
   return (
     <div className="App">
       <h1> Hello There </h1>
-      <div className="updates"> </div>
-      <Updates list={update}> </Updates>
-      <input type="text" id="inputter"></input> 
-      <button onClick={HandleClick()}> hello </button> 
+      <Testing />
     </div>
   );
 }
