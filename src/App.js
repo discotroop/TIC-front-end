@@ -4,7 +4,10 @@ import Logic from './components/logic.js';
 
 function NewLaader(props) {
   return (
-    <div> {props.text} {props.time} </div>
+    <div>
+      <h2> {props.text} </h2> 
+       <p> {props.time} </p>
+      </div>
   )
 }
 
@@ -33,12 +36,6 @@ class Testing extends React.Component {
     e.target.previousSibling.value = "";
     this.setState({});
   }
-  NewLaader(props) {
-    return (
-      <div> {props.text} {props.time} </div>
-    )
-  }
-
   drawLaaders() {
     let laaderArr = []
     let laaders = this.state.Laaders.laader;
