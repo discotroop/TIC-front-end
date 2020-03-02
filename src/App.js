@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Rung from './components/rung.js';
 
 class Testing extends React.Component {
   constructor(props) {
