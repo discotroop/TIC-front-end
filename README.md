@@ -17,3 +17,4 @@ MVP needs:
 - text display:
 - text display with time.
 - local storage/some way to store.
+

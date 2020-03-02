@@ -1,15 +1,21 @@
 import React from 'react';
 import './App.css';
-import Rung from './components/rung.js';
+import Logic from './components/logic.js';
+
+function NewLaader(props) {
+  return (
+    <div> {props.text} {props.time} </div>
+  )
+}
 
 class Testing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: ["sample"],
+      Laaders: Logic(),
       newStatus: ""
     }
-    this.handleClick = this.handleClick.bind(this);
+    // this.handlelick = this.handleClick.bind(this);
 
   }
   updateInput(e) {
@@ -19,19 +25,36 @@ class Testing extends React.Component {
   handleClick() {
     console.log("clicked")
     let molly = this.state.newStatus;
-    let sample = this.state.status;
-    sample.push(molly);
-    this.setState( {
-      status: molly, 
-    }
-    ) 
+    this.state.Laaders.createRung(molly);
+    console.log(this.state.Laaders.laader)
+  }
+  NewLaader(props) {
+    return (
+      <div> {props.text} {props.time} </div>
+    )
+  }
+
+  drawLaaders() {
+    let laaderArr = []
+    let laaders = this.state.Laaders.laader;
+
+    laaders.forEach((laader) => {
+      laaderArr.push(<NewLaader text={laader.text} time={laader.time}></NewLaader>)
+    })
+    return (
+      <div className="Scaffold">
+        {laaderArr}
+      </div>
+    )
   }
 
 
   render() {
     return (
       <div>
-      <div> {this.state.status} </div>
+      <div> 
+      {this.state.Laaders.createRung("hllo")}
+      {this.drawLaaders()} </div>
       <form>
       <input type="text" id="text" onChange={(e) => { this.updateInput(e) }}></input>
       <button onClick={() => this.handleClick()}> add </button> 
@@ -46,7 +69,7 @@ function App() {
   return (
     <div className="App">
       <h1> Hello There </h1>
-      <Testing />
+      <Testing></Testing> 
     </div>
   );
 }
