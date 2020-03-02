@@ -15,18 +15,23 @@ class Testing extends React.Component {
       Laaders: Logic(),
       newStatus: ""
     }
-    // this.handlelick = this.handleClick.bind(this);
+    this.handlelick = this.handleClick.bind(this);
 
   }
   updateInput(e) {
     this.setState({newStatus: e.target.value})
+    console.log(this.state.newStatus)
   }
 
-  handleClick() {
+  handleClick(e) {
+    console.log(e.target.previousSibling.value)
+    e.preventDefault();
     console.log("clicked")
     let molly = this.state.newStatus;
     this.state.Laaders.createRung(molly);
     console.log(this.state.Laaders.laader)
+    e.target.previousSibling.value = "";
+    this.setState({});
   }
   NewLaader(props) {
     return (
@@ -53,11 +58,10 @@ class Testing extends React.Component {
     return (
       <div>
       <div> 
-      {this.state.Laaders.createRung("hllo")}
       {this.drawLaaders()} </div>
       <form>
       <input type="text" id="text" onChange={(e) => { this.updateInput(e) }}></input>
-      <button onClick={() => this.handleClick()}> add </button> 
+      <button onClick={(e) => this.handleClick(e)}> add </button> 
       </form>
 
       </div>
