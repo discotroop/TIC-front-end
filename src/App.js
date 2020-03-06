@@ -20,20 +20,25 @@ class Clock extends React.Component {
         punchStatus: "Clock In"
       }
     }
+    calculateTime() {
+      let start = this.state.In;
+      let end = this.state.Out;
+      console.log(start, end)
+    }
+
+    // Might need a bigger/more complicated "session" object, to hold the relevant data.
     handleClick() {
       if (this.state.punchStatus === "Clock In") {
         this.setState({
           In: new Date().toLocaleTimeString(),
           punchStatus: "Clock Out"
         });
-        console.log(this.state.In);
-
       } else if (this.state.punchStatus === "Clock Out") {
         this.setState({
           Out: new Date().toLocaleTimeString(),
-          punchStatus: "Clock In"
+          punchStatus: "Clock In",
         })
-        console.log(this.state.Out)
+        this.calculateTime();
       }
     }
 
