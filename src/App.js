@@ -25,6 +25,8 @@ class Clock extends React.Component {
       let end = new Date().toLocaleTimeString().match( extractNumbers );
       console.log(start, end)
 
+
+      // need a more complicated clock -- spin out its own module!
       let seconds = end[2] * 1 - start[2] * 1;
       let minutes = 0;
       let hours = 0;

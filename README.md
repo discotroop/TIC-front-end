@@ -11,11 +11,11 @@ Pain Points:
 - No way to pull your blog/tweets/commits/todos/time punches into one public place.
 
 MVP needs:
-#- time clock in
-#- time clock out
-- text input:
-- text display:
-- text display with time.
+// - time clock in
+// - time clock out
+// - text input:
+// - text display:
+// - text display with time.
 - set time to not GMT
 #- local storage/some way to store.
 
