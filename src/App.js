@@ -10,6 +10,45 @@ function NewLaader(props) {
       </div>
   )
 }
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        In: "",
+        Out: "",
+        Total: "",
+        punchStatus: "Clock In"
+      }
+    }
+    handleClick() {
+      if (this.state.punchStatus === "Clock In") {
+        this.setState({
+          In: new Date().toLocaleTimeString(),
+          punchStatus: "Clock Out"
+        });
+        console.log(this.state.In);
+
+      } else if (this.state.punchStatus === "Clock Out") {
+        this.setState({
+          Out: new Date().toLocaleTimeString(),
+          punchStatus: "Clock In"
+        })
+        console.log(this.state.Out)
+      }
+    }
+
+    render() {
+      return (
+        <div>
+          <h1> {new Date().toLocaleTimeString()}</h1>
+          <p> {this.state.In} </p>
+          <p> {this.state.Out} </p>
+          <p> {this.state.Total} </p>
+          <button onClick={() => this.handleClick()}> {this.state.punchStatus} </button>
+        </div>
+      )
+    }
+}
 
 class Testing extends React.Component {
   constructor(props) {
@@ -23,16 +62,12 @@ class Testing extends React.Component {
   }
   updateInput(e) {
     this.setState({newStatus: e.target.value})
-    console.log(this.state.newStatus)
   }
 
   handleClick(e) {
-    console.log(e.target.previousSibling.value)
     e.preventDefault();
-    console.log("clicked")
     let molly = this.state.newStatus;
     this.state.Laaders.createRung(molly);
-    console.log(this.state.Laaders.laader)
     e.target.previousSibling.value = "";
     this.setState({});
   }
@@ -55,6 +90,7 @@ class Testing extends React.Component {
     return (
       <div>
       <div> 
+      <Clock></Clock>
       {this.drawLaaders()} </div>
       <form>
       <input type="text" id="text" onChange={(e) => { this.updateInput(e) }}></input>
