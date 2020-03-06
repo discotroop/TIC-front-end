@@ -14,16 +14,33 @@ class Clock extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        In: "",
-        Out: "",
+        In: new Date().toLocaleTimeString(),
         Total: "",
         punchStatus: "Clock In"
       }
     }
     calculateTime() {
-      let start = this.state.In;
-      let end = this.state.Out;
+      let extractNumbers = /\d+/g;
+      let start = this.state.In.match( extractNumbers );
+      let end = new Date().toLocaleTimeString().match( extractNumbers );
       console.log(start, end)
+
+      let seconds = end[2] * 1 - start[2] * 1;
+      let minutes = 0;
+      let hours = 0;
+      if (seconds < 0) {
+        minutes = end[1] * 1 - (start[1] * 1) + 1; 
+      } else {
+        minutes = end[1] * 1 - start[1];
+      }
+
+      if (minutes < 0) {
+        hours = end[0] * 1 - (start[0] * 1) + 1;
+      } else {
+        hours = end[0] * 1 - start[0] * 1;
+      }
+      console.log("your worked for ", hours, " hours", minutes, seconds)
+
     }
 
     // Might need a bigger/more complicated "session" object, to hold the relevant data.
@@ -35,7 +52,6 @@ class Clock extends React.Component {
         });
       } else if (this.state.punchStatus === "Clock Out") {
         this.setState({
-          Out: new Date().toLocaleTimeString(),
           punchStatus: "Clock In",
         })
         this.calculateTime();
