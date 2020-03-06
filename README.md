@@ -9,6 +9,7 @@ Who this is for:
 
 Pain Points:
 - No way to pull your blog/tweets/commits/todos/time punches into one public place.
+"
 
 MVP needs:
 // - time clock in
